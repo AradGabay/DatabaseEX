@@ -11,50 +11,37 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     HelperDB hlp;
-    EditText studname, studage;
-    EditText gradesubj, gradetext;
+    EditText studname, studphone, homephone, address, momsname, dadsname, dadsphone, momsphone;
+    EditText gradesubj, gradenum,quarter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         studname = findViewById(R.id.studname);
-        studage = findViewById(R.id.studage);
+        studphone = findViewById(R.id.phonenumber);
+        homephone = findViewById(R.id.homephone);
+        address = findViewById(R.id.address);
+        momsname = findViewById(R.id.momsname);
+        momsphone = findViewById(R.id.momsphone);
+        dadsname = findViewById(R.id.dadsname);
+        dadsphone = findViewById(R.id.dadsphone) ;
+
         gradesubj = findViewById(R.id.gradesubj);
-        gradetext = findViewById(R.id.grade);
+        gradenum = findViewById(R.id.grade);
+        quarter = findViewById(R.id.quarter);
 
         hlp = new HelperDB(this);
 
 
     }
 
+
     public void enterStudentData(View view) {
-        String name = studname.getText().toString();
-        int age = Integer.parseInt(studname.getText().toString());
 
-        ContentValues cv = new ContentValues();
-
-        db = hlp.getWritableDatabase();
-        cv.put(Students.NAME, name);
-        cv.put(Students.AGE, age);
-        db.insert(Students.TABLE_STUDENTS,null,cv);
-        db.close();
     }
 
     public void enterGradeData(View view) {
-        String subject, strgrade;
-        int grade;
-
-        subject = gradesubj.getText().toString();
-        strgrade = gradetext.getText().toString();
-        grade = Integer.parseInt(strgrade);
-
-        ContentValues cv = new ContentValues();
-        cv.put(Grades.SUBJECT, subject);
-        cv.put(Grades.GRADE, grade);
-
-        db = hlp.getWritableDatabase();
-        db.insert(Grades.TABLE_GRADES, null, cv);
-        db.close();
     }
 }
